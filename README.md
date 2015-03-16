@@ -9,4 +9,4 @@ Features:
 - minidlna server
 - transmission torrent client (with web interface)
 - automatic mounting of multiple usb disks using udevil
-- external disks spinning down option with hd-idle
+- external disks spinning down option with hd-idle or hdparm
