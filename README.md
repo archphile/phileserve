@@ -8,6 +8,6 @@ Features:
 - minidlna server
 - transmission torrent client (with web interface)
 - ssh/sftp server enabled by default using port 20609
-- automatic mounting of multiple usb disks using udevil
+- automatic mounting of multiple usb disks (ext3, ext4, fat32, ntfs, hfs) using udevil
 - external disks spinning down option with hd-idle or hdparm
 
