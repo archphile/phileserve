@@ -85,6 +85,7 @@ systemctl start smbd nmbd
 
 # NFS configuration
 echo -e "${red}Configuring NFS server...${NC}" 
+mkdir -p /srv/nfs4/phileserve
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/exports -O /etc/exports
 
 # udevil configuration
