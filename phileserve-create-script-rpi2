@@ -74,7 +74,7 @@ Server = http://archphile.org/repo/phileserve/arm7
 EOF
 echo -e "${red}Updating system and installing needed packages...${NC}" 
 pacman -Syu --noconfirm
-pacman -S samba cifs-utils nfs-utils minidlna transmission-cli udevil ntfs-3g hdparm hd-idle htop  --noconfirm
+pacman -S samba cifs-utils nfs-utils minidlna transmission-cli udevil ntfs-3g hdparm hd-idle htop smartmontools  --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
