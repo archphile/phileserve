@@ -30,6 +30,11 @@ Edit /etc/fstab and uncommend the following line (remove # from the beginning):
 #NFS server setting
 #/mnt/usb-disks/  /srv/nfs4/phileserve  none   bind   0   0
 
+so that it is like below:
+
+#NFS server setting
+/mnt/usb-disks/  /srv/nfs4/phileserve  none   bind   0   0
+
 Save with CTRL+X, pressing Y and then ENTER
 
 Edit exports and change according to your network. For example if your ip is 192.168.1.134:
