@@ -82,7 +82,7 @@ echo -e "${red}Setting default systemd target...${NC}"
 systemctl set-default -f multi-user.target
 
 # Samba configuration
-echo -e "${red}Configuring samba server...${NC}" 
+echo -e "${red}Configuring  and enabling samba server...${NC}" 
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/smb.conf -O /etc/samba/smb.conf
 useradd nash -m -G users
 passwd nash
