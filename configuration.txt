@@ -9,7 +9,7 @@ Samba server is enabled by default. In order to change configuration, you must e
 
 nano /etc/samba/smb.conf
 
-Edit your file, save with CTRL+X, pressing Y and then ENTER. The last step is to restart smbd and nmbd:
+Edit your file, save with CTRL+X, then press Y and ENTER. The last step is to restart smbd and nmbd:
 
 systemctl restart smbd nmbd
 
@@ -46,7 +46,7 @@ and change the content so that it's like the one below:
 /srv/nfs4/ 192.168.1.0/24(rw,fsid=root,no_subtree_check)
 /srv/nfs4/phileserve 192.168.1.0/24(rw,no_subtree_check,nohide) # note the nohide option which is applied to mounted directories on the file system.
 
-Save with CTRL+X, pressing Y and then ENTER
+Edit your file, save with CTRL+X, then press Y and ENTER
 
 Give the following command:
 
@@ -85,7 +85,7 @@ media_dir=A,/mnt/usb-disks/babis/Music
 #media_dir=V,/mnt/usb-disks/yourdisk/yourvideopath
 media_dir=P,/mnt/usb-disks/mitsos/Images
 
-Save with CTRL+X, pressing Y and then ENTER
+Edit your file, save with CTRL+X, then press Y and ENTER
 
 Enable and start the appropriate service:
 
@@ -110,7 +110,7 @@ Now you must edit the transmission configuration file:
 nano /var/lib/transmission/.config/transmission-daemon/settings.json
 
 
-Save with CTRL+X, pressing Y and then ENTER
+Edit your file, save with CTRL+X, then press Y and ENTER
 ---------------------------------------------------------------------------------------
 
 6. Spin-down of usb disks with hdparm or hd-idle
@@ -120,5 +120,5 @@ You have multiple options here. The first is using hd-idle. Edit the following f
 nano /etc/conf.d/hd-idle
 
 
-
+Edit your file, save with CTRL+X, then press Y and ENTER
 ---------------------------------------------------------------------------------------
