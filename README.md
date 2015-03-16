@@ -7,7 +7,7 @@ Features:
 - NFS server
 - minidlna server
 - transmission torrent client (with web interface)
-- enabled ssh/sftp connection using port 20609
+- ssh/sftp server enabled by default using port 20609
 - automatic mounting of multiple usb disks using udevil
 - external disks spinning down option with hd-idle or hdparm
 
