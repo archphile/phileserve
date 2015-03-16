@@ -99,7 +99,8 @@ echo -e "${red)Fetching udev rules for hdparm...${NC}"
 mkdir /opt/phileserve
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-onedisk -O /opt/phileserve/50-hdparm.rules-onedisk
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-manydisks -O /opt/phileserve/50-hdparm.rules-manydisks
-://raw.githubusercontent.com/archphile/phileserve/master/files/hd-idle
+
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/hd-idle -O /etc/conf.d/hd-idle
 
 @minidlna configuration
 echo -e "${red)Fetching dlna configuration...${NC}" 
