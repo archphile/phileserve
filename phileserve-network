@@ -1,0 +1,13 @@
+Description='A basic dhcp ethernet connection'
+Interface=eth0
+Connection=ethernet
+IP=dhcp
+ExecUpPost='/usr/bin/ntpd -gq || true'
+
+#Description='A basic ethernet connection with static ip'
+#Interface=eth0
+#Connection=ethernet
+#IP=static
+#Address=('192.168.1.148/24')
+#Gateway='192.168.1.1'
+#ExecUpPost='/usr/bin/ntpd -gq || true'
