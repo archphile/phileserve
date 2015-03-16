@@ -103,6 +103,10 @@ mkdir /opt/phileserve
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-onedisk -O /opt/phileserve/50-hdparm.rules-onedisk
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-manydisks -O /opt/phileserve/50-hdparm.rules-manydisks
 
+# minidlna configuration
+echo -e "${red)Fetching dlna configuration...${NC}" 
+https://raw.githubusercontent.com/archphile/phileserve/master/files/minidlna.conf -O /etc/minidlna.conf
+
 # journald.conf configuration and /var/log deletion
 echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
 sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
