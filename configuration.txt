@@ -1,0 +1,19 @@
+1. Samba server
+
+Samba server is enabled by default. In order to change configuration, you must edit smb.conf:
+
+nano /etc/samba/smb.conf
+
+Edit your file, save with CTRL+X, pressing Y and then ENTER. The last step is to restart smbd and nmbd:
+
+systemctl restart smbd nmbd
+
+Default user/password is nash/nash.
+
+2. NFS Server
+
+3. Minidlna Server
+
+4. Transmission torrent client with web interface
+
+5. Spin-down of usb disks with hdparm or hd-idle
