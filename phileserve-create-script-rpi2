@@ -36,7 +36,7 @@ echo "nohook resolv.conf" >>/etc/dhcpcd.conf
 echo -e "${red}Disabling various modules...${NC}" 
 cat > /etc/modprobe.d/blacklist.conf <<"EOF"
 blacklist snd_bcm2835
-blacklist rpcsec_gss_krb5
+#blacklist rpcsec_gss_krb5
 EOF
 
 # Network Configuration
