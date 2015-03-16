@@ -5,6 +5,7 @@ Features:
 
 - samba server 
 - NFS server
+- FTP server (vsftpd)
 - minidlna server
 - transmission torrent client (with web interface)
 - automatic mounting of multiple usb disks using udevil
