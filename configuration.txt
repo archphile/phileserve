@@ -61,6 +61,31 @@ systemctl start rpcbind nfs-server
 
 4. Minidlna Server
 
+Edit the following file:
+
+nano /etc/minidlna.conf
+
+You will find the following lines:
+
+#media_dir=A,/mnt/usb-disks/yourdisk/yourmusicpath
+#media_dir=V,/mnt/usb-disks/yourdisk/yourvideopath
+#media_dir=P,/mnt/usb-disks/yourdisk/yourimagespath
+
+Change and uncomment according to your needs. For example if your disk is labeled "babis" and you want to serve the directory 
+Music inside it, change the lines like below:
+
+media_dir=A,/mnt/usb-disks/babis/Music
+#media_dir=V,/mnt/usb-disks/yourdisk/yourvideopath
+#media_dir=P,/mnt/usb-disks/yourdisk/yourimagespath
+
+Do the same for your videos and images if you want.
+
+Save with CTRL+X, pressing Y and then ENTER
+
+Enable and start the appropriate service:
+
+systemctl enable minidlna
+systemctl start minidlna
 
 ---------------------------------------------------------------------------------------
 
