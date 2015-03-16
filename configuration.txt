@@ -96,10 +96,29 @@ systemctl start minidlna
 
 5. Transmission torrent client with web interface
 
+Lets say you want to use your disk labeled "babis" for your torrents. First create a directory in it for your downloads:
 
+mkdir /mnt/usb-disks/babis/torrents
+
+Then give the following permissions:
+
+chown -R transmission:transmission /mnt/usb-disks/babis/torrents
+chmod -R 775 /mnt/usb-disks/babis/torrents
+
+Now you must edit the transmission configuration file:
+
+nano /var/lib/transmission/.config/transmission-daemon/settings.json
+
+
+Save with CTRL+X, pressing Y and then ENTER
 ---------------------------------------------------------------------------------------
 
 6. Spin-down of usb disks with hdparm or hd-idle
+
+You have multiple options here. The first is using hd-idle. Edit the following file:
+
+nano /etc/conf.d/hd-idle
+
 
 
 ---------------------------------------------------------------------------------------
