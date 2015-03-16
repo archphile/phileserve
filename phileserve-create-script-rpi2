@@ -87,6 +87,8 @@ wget https://raw.githubusercontent.com/archphile/phileserve/master/files/smb.con
 useradd nash -m -G users
 passwd nash
 smbpasswd -a nash
+systemctl enable smbd nmbd
+systemctl start smbd nmbd
 
 # NFS configuration
 echo -e "${red}Configuring NFS server...${NC}" 
