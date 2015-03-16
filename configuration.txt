@@ -21,8 +21,36 @@ Default user/password is nash/nash.
 
 NFS server is not enabled by default. Before using it you must edit and configure some files:
 
+Give the following command:
+
+mount --bind /mnt/usb-disks/  /srv/nfs4/phileserve
+
+Edit /etc/fstab and uncommend the following line (remove # from the beginning):
+
+#NFS server setting
+#/mnt/usb-disks/  /srv/nfs4/phileserve  none   bind   0   0
+
+Save with CTRL+X, pressing Y and then ENTER
+
+Edit exports and change according to your network. For example if your ip is 192.168.1.134:
+
 nano /etc/exports
 
+and change the content so that it's like the one below:
+
+/srv/nfs4/ 192.168.1.0/24(rw,fsid=root,no_subtree_check)
+/srv/nfs4/phileserve 192.168.1.0/24(rw,no_subtree_check,nohide) # note the nohide option which is applied to mounted directories on the file system.
+
+Save with CTRL+X, pressing Y and then ENTER
+
+Give the following command:
+
+exportfs -rav
+
+Finally enable and start the appropriate service:
+
+systemctl enable rpcbind nfs-server
+systemctl start rpcbind nfs-server
 
 ---------------------------------------------------------------------------------------
 
