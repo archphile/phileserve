@@ -116,6 +116,10 @@ sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
 #systemctl mask systemd-journal-flush.service
 rm -R /var/log
 
+# increase ssh security
+echo -e "${red}Changing default ssh port to 20609...${NC}" 
+sed -i 's/^#Port 22.*/Port 20609/' /etc/ssh/sshd_config
+
 # changing /etc/issue message
 echo -e "${red}Changing /etc/issue message ...${NC}" 
 echo "Phileserve \r (\l)" > /etc/issue
