@@ -8,4 +8,4 @@
 tmpfs /var/log tmpfs nodev,nosuid,noatime,mode=1777,size=20m 0 0
 
 #NFS server setting
-/mnt/usb-disks/yourdisk /srv/nfs4/sharename  none   bind   0   0
+#/mnt/usb-disks/yourdisk /srv/nfs4/phileserve  none   bind   0   0
