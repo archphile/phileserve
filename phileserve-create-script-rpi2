@@ -65,16 +65,10 @@ echo -e "${red}Linking .bash_history to /dev/null...${NC}"
 rm /root/.bash_history
 ln -sf /dev/null ~/.bash_history
 
-# Adding Archphile repository and installing needed packages
-echo -e "${red}Adding Archphile Repository...${NC}" 
-cat >> /etc/pacman.conf <<"EOF"
-[phileserve]
-SigLevel = Never
-Server = http://archphile.org/repo/phileserve/arm7
-EOF
+# Installing needed packages
 echo -e "${red}Updating system and installing needed packages...${NC}" 
 pacman -Syu --noconfirm
-pacman -S samba cifs-utils nfs-utils minidlna transmission-cli vsftpd udevil ntfs-3g hfsprogs hdparm hd-idle htop smartmontools  --noconfirm
+pacman -S samba cifs-utils nfs-utils minidlna transmission-cli vsftpd udevil ntfs-3g hfsprogs hdparm hd-idle htop smartmontools rsync  --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -86,6 +80,17 @@ pacman -Scc
 # Setting multi-user.target as the new default target
 echo -e "${red}Setting default systemd target...${NC}" 
 systemctl set-default -f multi-user.target
+
+# Samba configuration
+echo -e "${red}Configuring samba server...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/smb.conf -O /etc/samba/smb.conf
+useradd nash -m -G users
+passwd nash
+smbpasswd -a nash
+
+# NFS configuration
+echo -e "${red}Configuring NFS server...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/exports -O /etc/exports
 
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
