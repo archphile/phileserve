@@ -1,4 +1,9 @@
-1. Samba server
+1. Network configuration
+
+
+---------------------------------------------------------------------------------------
+
+2. Samba server
 
 Samba server is enabled by default. In order to change configuration, you must edit smb.conf:
 
@@ -10,10 +15,24 @@ systemctl restart smbd nmbd
 
 Default user/password is nash/nash.
 
-2. NFS Server
+---------------------------------------------------------------------------------------
 
-3. Minidlna Server
+3. NFS Server
 
-4. Transmission torrent client with web interface
 
-5. Spin-down of usb disks with hdparm or hd-idle
+---------------------------------------------------------------------------------------
+
+4. Minidlna Server
+
+
+---------------------------------------------------------------------------------------
+
+5. Transmission torrent client with web interface
+
+
+---------------------------------------------------------------------------------------
+
+6. Spin-down of usb disks with hdparm or hd-idle
+
+
+---------------------------------------------------------------------------------------
