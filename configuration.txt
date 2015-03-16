@@ -78,7 +78,12 @@ media_dir=A,/mnt/usb-disks/babis/Music
 #media_dir=V,/mnt/usb-disks/yourdisk/yourvideopath
 #media_dir=P,/mnt/usb-disks/yourdisk/yourimagespath
 
-Do the same for your videos and images if you want.
+Do the same for your videos and images if you want. For example if you want to serve Pictures directory from your second disk
+labeled "mitsos" the final configuration will be as follows:
+
+media_dir=A,/mnt/usb-disks/babis/Music
+#media_dir=V,/mnt/usb-disks/yourdisk/yourvideopath
+media_dir=P,/mnt/usb-disks/mitsos/Images
 
 Save with CTRL+X, pressing Y and then ENTER
 
