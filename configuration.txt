@@ -19,6 +19,10 @@ Default user/password is nash/nash.
 
 3. NFS Server
 
+NFS server is not enabled by default. Before using it you must edit and configure some files:
+
+nano /etc/exports
+
 
 ---------------------------------------------------------------------------------------
 
