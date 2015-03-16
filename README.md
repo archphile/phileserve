@@ -1,5 +1,5 @@
 # phileserve
-A quick and dirty ArchlinuxARM based USB NAS solution for embedded boards. 
+A simple and minimal ArchlinuxARM based USB NAS solution for embedded boards. 
 
 Features:
 
