@@ -95,6 +95,7 @@ wget https://raw.githubusercontent.com/archphile/phileserve/master/files/exports
 # udevil configuration
 echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/udevil.conf -O /etc/udevil/udevil.conf
+mkdir /mnt/usb-disks
 systemctl enable devmon@root
 
 # disks spin-down configuration
