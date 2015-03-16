@@ -1,0 +1,112 @@
+#!/bin/bash
+######################Phileserve Creation Script for Raspberry 2############################
+clear
+red='\e[0;31m'
+NC='\e[0m'
+# Changing Root password
+echo -e "${red}Change the root password...${NC}" 
+passwd
+
+# Changing hostname
+echo -e "${red}Changing your hostname...${NC}" 
+hostnamectl set-hostname phileserve
+
+# /etc/motd text
+echo -e "${red}Downloading sample /etc/motd file...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/motd-phileserve -O /etc/motd
+nano /etc/motd
+
+# Changing DNS servers
+echo -e "${red}Changing to Google DNS servers...${NC}" 
+systemctl disable systemd-resolved
+systemctl mask systemd-resolved
+rm /etc/resolv.conf
+cat > /etc/resolv.conf <<"EOF"
+# Google DNS
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+# Opendns
+#nameserver 208.67.222.222 
+#nameserver 208.67.220.220
+EOF
+echo -e "${red}Disallowing dhcpcd to change DNS servers...${NC}" 
+echo "nohook resolv.conf" >>/etc/dhcpcd.conf
+
+# Disabling various modules
+echo -e "${red}Disabling various modules...${NC}" 
+cat > /etc/modprobe.d/blacklist.conf <<"EOF"
+blacklist snd_bcm2835
+blacklist rpcsec_gss_krb5
+EOF
+
+# Network Configuration
+echo -e "${red}Changing netctl network configuration...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/phileserve-network -O /etc/netctl/phileserve-network
+systemctl disable systemd-networkd
+systemctl mask systemd-networkd
+netctl enable phileserve-network
+
+# Locale and timezone configuration
+systemctl disable systemd-timesyncd
+systemctl mask systemd-timesyncd
+pacman -Sy ntp --noconfirm
+echo -e "${red}Changing locale, timezone and ntp configuration...${NC}" 
+sed -i 's/^#en_US.UTF-8 UTF-8.*/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+echo "LANG="en_US.UTF-8"" > /etc/locale.conf
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/Europe/Athens /etc/localtime
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/ntp.conf -O /etc/ntp.conf
+
+# /etc/fstab tweaking and linking .bash_history to /dev/null
+echo -e "${red}Changing fstab entries...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/fstab-phileserve -O /etc/fstab
+echo -e "${red}Linking .bash_history to /dev/null...${NC}" 
+rm /root/.bash_history
+ln -sf /dev/null ~/.bash_history
+
+# Adding Archphile repository and installing needed packages
+echo -e "${red}Adding Archphile Repository...${NC}" 
+cat >> /etc/pacman.conf <<"EOF"
+[phileserve]
+SigLevel = Never
+Server = http://archphile.org/repo/phileserve/arm7
+EOF
+echo -e "${red}Updating system and installing needed packages...${NC}" 
+pacman -Syu --noconfirm
+pacman -S samba cifs-utils nfs-utils minidlna transmission-cli udevil ntfs-3g htop  --noconfirm
+
+# Removing unneeded packages and cleaning pacman cache
+echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
+pacman -Rcsn lvm2 mdadm reiserfsprogs xfsprogs man-db --noconfirm
+#systemctl disable cronie
+#systemctl mask cronie
+pacman -Scc
+
+# Setting multi-user.target as the new default target
+echo -e "${red}Setting default systemd target...${NC}" 
+systemctl set-default -f multi-user.target
+
+# udevil configuration
+echo -e "${red}Creating udevil configuration and enabling devmon service...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/udevil.conf -O /etc/udevil/udevil.conf
+systemctl enable devmon@root
+
+# journald.conf configuration and /var/log deletion
+echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
+sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
+#systemctl disable systemd-journald
+#systemctl mask systemd-journald
+#systemctl mask systemd-journal-flush.service
+rm -R /var/log
+
+# changing /etc/issue message
+echo -e "${red}Changing /etc/issue message ...${NC}" 
+echo "Phileserve \r (\l)" > /etc/issue
+
+# system cleanup
+echo -e "${red}Cleaning up system...${NC}" 
+rm /root/phileserve-create-script*
+rm /etc/ssh/ssh_host_*
+
+echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}" 
