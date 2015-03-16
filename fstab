@@ -1,0 +1,11 @@
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+/dev/root 	/		ext4	noatime,nouser_xattr,discard     0       0
+/dev/mmcblk0p1  /boot vfat    defaults    0       0
+
+#Finetuning for less writes on SD Card - Warning!!! Logs are deleted after each reboot.
+tmpfs /var/log tmpfs nodev,nosuid,noatime,mode=1777,size=20m 0 0
+
+#NFS server setting
+/mnt/usb-disks/yourdisk /srv/nfs4/sharename  none   bind   0   0
