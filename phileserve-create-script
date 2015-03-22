@@ -114,8 +114,8 @@ sed -i 's/^#Storage=auto.*/Storage=none/' /etc/systemd/journald.conf
 rm -R /var/log
 
 # increase ssh security
-echo -e "${red}Changing default ssh port to 667...${NC}" 
-sed -i 's/^#Port 22.*/Port 667/' /etc/ssh/sshd_config
+#echo -e "${red}Changing default ssh port to 667...${NC}" 
+#sed -i 's/^#Port 22.*/Port 667/' /etc/ssh/sshd_config
 
 # changing /etc/issue message
 echo -e "${red}Changing /etc/issue message ...${NC}" 
