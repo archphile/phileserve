@@ -11,5 +11,5 @@
 #
 # Use `exportfs -arv` to reload.
 
-/srv/nfs4/ x.0.0.0/24(rw,fsid=root,no_subtree_check)
-/srv/nfs4/phileserve x.0.0.0/24(rw,no_subtree_check,nohide) # note the nohide option which is applied to mounted directories on the file system.
+/srv/nfs4/ xxx.xxx.xxx.0/24(rw,fsid=root,no_subtree_check)
+/srv/nfs4/phileserve xxx.xxx.xxx.0/24(rw,no_subtree_check,nohide) # note the nohide option which is applied to mounted directories on the file system.
