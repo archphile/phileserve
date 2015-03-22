@@ -95,15 +95,15 @@ mkdir /mnt/usb-disks
 systemctl enable devmon@root
 
 # disks spin-down configuration
-echo -e "${red)Fetching udev rules for hdparm...${NC}" 
+echo -e "${red}Fetching udev rules for hdparm...${NC}" 
 mkdir /opt/phileserve
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-onedisk -O /opt/phileserve/50-hdparm.rules-onedisk
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdparm.rules-manydisks -O /opt/phileserve/50-hdparm.rules-manydisks
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/hd-idle -O /etc/conf.d/hd-idle
 
-@minidlna configuration
-echo -e "${red)Fetching dlna configuration...${NC}" 
-https://raw.githubusercontent.com/archphile/phileserve/master/files/minidlna.conf -O /etc/minidlna.conf
+#minidlna configuration
+echo -e "${red}Fetching dlna configuration...${NC}" 
+wget https://raw.githubusercontent.com/archphile/phileserve/master/files/minidlna.conf -O /etc/minidlna.conf
 
 # journald.conf configuration and /var/log deletion
 echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
