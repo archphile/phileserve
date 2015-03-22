@@ -1,5 +1,5 @@
 #!/bin/bash
-######################Phileserve Creation Script For ARM Devices############################
+######################Phileserve Creation Script For Raspberry Pi 2############################
 clear
 red='\e[0;31m'
 NC='\e[0m'
