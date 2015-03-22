@@ -1,6 +1,50 @@
 1. Network configuration
 
+Default network configuration uses dhcp. It's strongly recommended to change to static ip. In order to do this you must edit
+the following file:
 
+nano /etc/netctl/phileserve-network
+
+The contents of the file above are:
+
+Description='A basic dhcp ethernet connection'
+Interface=eth0
+Connection=ethernet
+IP=dhcp
+ExecUpPost='/usr/bin/ntpd -gq || true'
+
+#Description='A basic ethernet connection with static ip'
+#Interface=eth0
+#Connection=ethernet
+#IP=static
+#Address=('192.168.1.148/24')
+#Gateway='192.168.1.1'
+#ExecUpPost='/usr/bin/ntpd -gq || true'
+
+
+Lets assume that the ip of your router is 192.168.1.1 and you want to use 192.168.1.142 for the phileserve machine. The first step
+is to comment the dhcp section. Now, uncomment the static ip network and change the ips to match your setup:
+
+#Description='A basic dhcp ethernet connection'
+#Interface=eth0
+#Connection=ethernet
+#IP=dhcp
+#ExecUpPost='/usr/bin/ntpd -gq || true'
+
+Description='A basic ethernet connection with static ip'
+Interface=eth0
+Connection=ethernet
+IP=static
+Address=('192.168.1.142/24')
+Gateway='192.168.1.1'
+ExecUpPost='/usr/bin/ntpd -gq || true'
+
+Save with CTRL+X, then press Y and ENTER. The last step is to reenable phileserve-network:
+
+netctl reenable phileserve-network
+
+After rebooting with "systemctl reboot" your new configuration will take place (you can also use the above command with restart
+so that the change takes place immediately).
 ---------------------------------------------------------------------------------------
 
 2. Samba server
