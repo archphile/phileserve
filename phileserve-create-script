@@ -39,6 +39,14 @@ systemctl disable systemd-networkd
 systemctl mask systemd-networkd
 netctl enable phileserve-network
 
+# Disabling ipv6
+# "net.ipv6.conf.all.disable_ipv6=1" added throught archphile-optimize package 
+sed -e '/::1/ s/^#*/#/' -i /etc/hosts
+echo >>/etc/dhcpcd.conf
+echo "#Disable ipv6 connectivity" >>/etc/dhcpcd.conf
+echo "noipv6rs" >>/etc/dhcpcd.conf
+echo "noipv6" >>/etc/dhcpcd.conf
+
 # Locale and timezone configuration
 systemctl disable systemd-timesyncd
 systemctl mask systemd-timesyncd
