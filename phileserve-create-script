@@ -130,7 +130,7 @@ echo "Phileserve \r (\l)" > /etc/issue
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
-rm /root/phileserve-create-script*
 rm /etc/ssh/ssh_host_*
+rm /root/phileserve-create-script*
 
 echo -e "${red}PLEASE REBOOT YOUR SYSTEM IMMEDIATELY!!!!!!${NC}" 
