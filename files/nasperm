@@ -1,0 +1,2 @@
+find /mnt/usb-disks/apothiki/Music -type d -print0 | xargs -0 chmod 775
+find /mnt/usb-disks/apothiki/Music -type f -print0 | xargs -0 chmod 664
