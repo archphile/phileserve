@@ -3,7 +3,12 @@
 clear
 red='\e[0;31m'
 NC='\e[0m'
-# Changing Root password
+
+# Deleting alarm user and changing Root password
+echo -e "${red}Deleting alarm user...${NC}" 
+su
+cd /root
+userdel -r alarm
 echo -e "${red}Change the root password...${NC}" 
 passwd
 
@@ -69,7 +74,7 @@ ln -sf /dev/null ~/.bash_history
 # Installing needed packages
 echo -e "${red}Updating system and installing needed packages...${NC}" 
 pacman -Syu --noconfirm
-pacman -S samba cifs-utils nfs-utils minidlna transmission-cli udevil ntfs-3g hfsprogs hdparm hd-idle htop smartmontools rsync  --noconfirm
+pacman -S samba cifs-utils nfs-utils transmission-cli udevil ntfs-3g hfsprogs hdparm hd-idle htop smartmontools rsync  --noconfirm
 
 # Removing unneeded packages and cleaning pacman cache
 echo -e "${red}Removing unneeded packages and cleaning pacman cache...${NC}" 
@@ -109,8 +114,8 @@ wget https://raw.githubusercontent.com/archphile/phileserve/master/files/50-hdpa
 wget https://raw.githubusercontent.com/archphile/phileserve/master/files/hd-idle -O /etc/conf.d/hd-idle
 
 #minidlna configuration
-echo -e "${red}Fetching dlna configuration...${NC}" 
-wget https://raw.githubusercontent.com/archphile/phileserve/master/files/minidlna.conf -O /etc/minidlna.conf
+#echo -e "${red}Fetching dlna configuration...${NC}" 
+#wget https://raw.githubusercontent.com/archphile/phileserve/master/files/minidlna.conf -O /etc/minidlna.conf
 
 # journald.conf configuration and /var/log deletion
 echo -e "${red}Changing journald.conf configuration and deleting /var/log...${NC}" 
@@ -127,6 +132,14 @@ rm -R /var/log
 # changing /etc/issue message
 echo -e "${red}Changing /etc/issue message ...${NC}" 
 echo "Phileserve \r (\l)" > /etc/issue
+
+# change the password at first login
+echo -e "${red}Setting a password change for next login...${NC}" 
+chage -d 0 root
+
+#fixing root permissions for sshd
+echo -e "${red}Setting PermitRootLogin to yes...${NC}" 
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 # system cleanup
 echo -e "${red}Cleaning up system...${NC}" 
